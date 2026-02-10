@@ -1,8 +1,13 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class MainLibro {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String opcion;
+
         //Crear lista --> Guardar objetos de la clase Libro
         List<Libro> libros = new ArrayList<>();
 
@@ -16,6 +21,23 @@ public class MainLibro {
         libros.add(new Libro("Fahrenheit 451", "Ray Bradbury", 1953));
         libros.add(new Libro("El amor en los tiempos del cólera", "Gabriel García Márquez", 1985));
         libros.add(new Libro("Los juegos del hambre", "Suzanne Collins", 2008));
+
+        do {
+            System.out.println("Título: ");
+            String titulo = sc.nextLine();
+
+            System.out.println("Autor: ");
+            String autor = sc.nextLine();
+
+            System.out.println("Año publicación: ");
+            int year = sc.nextInt();
+
+            libros.add(new Libro(titulo, autor, year));
+            sc.nextLine();
+
+            System.out.println("¿Continuar? (s/n): ");
+            opcion = sc.nextLine();
+        } while (opcion.equalsIgnoreCase("s"));
 
         //Llamar a los métodos
         SerializacionGuardar.guardar(libros);
